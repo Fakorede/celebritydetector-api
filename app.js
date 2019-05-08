@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt-nodejs");
 
 const app = express();
 app.use(bodyParser.json());
@@ -83,6 +84,19 @@ app.post("/image", (req, res) => {
   if (!found) {
     res.status(400).json("User not found");
   }
+});
+
+// bcrypt functions
+bcrypt.hash("bacon", null, null, function(err, hash) {
+  // Store hash in your password DB.
+});
+
+// Load hash from your password DB.
+bcrypt.compare("bacon", hash, function(err, res) {
+  // res == true
+});
+bcrypt.compare("veggies", hash, function(err, res) {
+  // res = false
 });
 
 // start server
